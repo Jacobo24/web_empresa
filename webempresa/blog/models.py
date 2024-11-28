@@ -34,3 +34,5 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+categories = models.ManyToManyField(Category, verbose_name="Categorías", related_name="get_posts")
