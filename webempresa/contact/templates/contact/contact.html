@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block content %}
+		<section class="page-section about-heading">
+			<div class="container">
+				<img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="img/contact.jpg" alt="">
+				<div class="about-heading-content">
+					<div class="row">
+						<div class="col-xl-9 col-lg-10 mx-auto">
+							<div class="bg-faded rounded p-5">
+								<h2 class="section-heading mb-4">
+									<span class="section-heading-upper">Envíanos tus dudas</span>
+									<span class="section-heading-lower">Contacto</span>
+								</h2>
+								<!-- Formulario de contacto -->
+                                {% if 'ok' in request.GET %}
+                                    <div class="alert alert-success" role="alert">
+                                        Tu mensaje ha sido enviado
+                                    </div>
+                                {% endif %}
+                                {% if request.method == 'POST' %}
+                                    <div class="alert alert-success" role="alert">
+                                        Tu mensaje ha sido enviado
+                                    </div>
+                                {% endif %}
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="name">Nombre</label>
+                                        <div class="input_group">{{ form.name }}</div>
+                                        {{form.name.errors}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Correo electrónico</label>
+                                        <div class="input_group">{{ form.email }}</div>
+                                        {{form.email.errors}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Mensaje</label>
+                                        <div class="input_group">{{ form.message }}</div>
+                                        {{form.message.errors}}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+{% endblock %}

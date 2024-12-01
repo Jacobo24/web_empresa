@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from django.apps import AppConfig
+import json
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'social.apps.SocialConfig',
     'pages.apps.PagesConfig',
     'ckeditor',
+    'contact.apps.ContactConfig',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +150,14 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+# Email config
+EMAIL_SETTINGS_FIE = os.path.join(BASE_DIR, 'email_settings.json')
+with open(EMAIL_SETTINGS_FIE) as f:
+    email_settings = json.load(f)
+
+EMAIL_HOST = email_settings['EMAIL_HOST']
+EMAIL_PORT = email_settings['EMAIL_PORT']
+EMAIL_USE_TLS = email_settings['EMAIL_USE_TLS']
+EMAIL_HOST_USER = email_settings['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = email_settings['EMAIL_HOST_PASSWORD']
