@@ -17,6 +17,11 @@
                             <span class="section-heading-lower"></span>
                             {{ post.title }}
                         </h2>
+                        {% if post.image %}
+                        <p class="mb-0">
+                            <img class="mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{ post.image.url }}" alt="{{ post.title }}">
+                        </p>
+                        {% endif %}
                         <p class="mb-0">
                             <img class="mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="" alt="">
                         </p>
